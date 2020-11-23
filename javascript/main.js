@@ -5,31 +5,31 @@ var app = new Vue({
     el: '#app',
     data: {
 
-     list: [7,8,9],
-     list2: ["a","b","c"],
      lista3: []
    },
 
-    created(){
-       this.addNumber();
-    },
+   created(){
+
+      const self = this;
+
+       axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+         .then(function (response) {
+
+            self.data = response.data;
+
+            self.data.forEach((item) => {
+              self.lista3.push(item)
+            });
+
+         })
+
+          .catch(function (error) {
+          // handle error
+          console.log(error);
+         });
 
 
-   methods:{
-
-       addNumber(){
-
-           this.list.map((e, i) =>  this.lista3.push(e + this.list2[i]))
-
-           console.log(lista3)
-         }
-
-
-       }
-
-
-
-
+      },
 
 });
 
